@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phong Thủy Á Đông | Bazi Calculator & Database</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- nguhanh.net reference styles for exact table reproduction -->
+    <link rel="stylesheet" href="https://nguhanh.net/Templates/css/main.min.css">
+    <link rel="stylesheet" href="https://nguhanh.net/Templates/css/styles.css">
+    <link rel="stylesheet" href="https://nguhanh.net/Templates/css/lasotutru.css">
+    <!-- Style CSS (Loaded last so custom overrides are applied correctly) -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- New Brand Header (Clean, Simplified, Personalized) -->
+        <header class="app-header" style="text-align: center; margin-bottom: 30px; margin-top: 10px;">
+            <div style="display: inline-flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-yin-yang logo-icon" style="font-size: 2.8rem; color: var(--accent-gold); filter: drop-shadow(0 0 10px var(--accent-gold-glow)); animation: rotateSlow 20s linear infinite;"></i>
+                <div style="text-align: left;">
+                    <h1 style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: 1px; color: var(--accent-gold); text-shadow: 0 0 15px rgba(212, 175, 55, 0.3); margin: 0;">Phong Thủy Á Đông</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            
+            <!-- VIEW 1: BAZI CALCULATOR FORM (DEFAULT VIEW) -->
+            <section class="view-panel active" id="panel-calculator">
+                <div class="calc-grid">
+                    <!-- Birth Input Form Card -->
+                    <div class="calc-form-card card-glass">
+                        <h2 class="section-title"><i class="fa-solid fa-user-pen"></i> Nhập Thông Tin Ngày Sinh</h2>
+                        <form id="bazi-calc-form">
+                            <!-- One Hundred Years check box at top -->
+                            <div class="form-group-checkbox" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                <input type="checkbox" id="calc-one-hundred-years" checked style="accent-color: var(--accent-gold); width: 16px; height: 16px; cursor: pointer;">
+                                <label for="calc-one-hundred-years" style="font-size: 0.9rem; font-weight: 600; cursor: pointer;">Hiển thị 100 năm Đại Vận</label>
+                            </div>
+
+                            <!-- Full name -->
+                            <div class="form-group">
+                                <label for="calc-name">Họ và tên</label>
+                                <input type="text" id="calc-name" placeholder="Nhập họ và tên..." required>
+                            </div>
+                            
+                            <!-- Searchable Date Inputs (Day, Month, Year) -->
+                            <div class="form-row-three" style="margin-bottom: 18px;">
+                                <div class="form-group">
+                                    <label for="calc-day">Ngày sinh</label>
+                                    <input type="text" id="calc-day" list="days-list" placeholder="Chọn/Nhập..." required autocomplete="off">
+                                    <datalist id="days-list"></datalist>
+                                </div>
+                                <div class="form-group">
+                                    <label for="calc-month">Tháng sinh</label>
+                                    <input type="text" id="calc-month" list="months-list" placeholder="Chọn/Nhập..." required autocomplete="off">
+                                    <datalist id="months-list"></datalist>
+                                </div>
+                                <div class="form-group">
+                                    <label for="calc-year">Năm sinh</label>
+                                    <input type="text" id="calc-year" list="years-list" placeholder="Chọn/Nhập..." required autocomplete="off">
+                                    <datalist id="years-list"></datalist>
+                                </div>
+                            </div>
+                            
+                            <!-- Time Selects (Hour, Minute) -->
+                            <div class="form-row-two">
+                                <div class="form-group">
+                                    <label for="calc-hour">Giờ sinh</label>
+                                    <div class="select-wrapper">
+                                        <select id="calc-hour" required>
+                                            <!-- Dynamically filled by JS (00-23) -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="calc-minute">Phút sinh</label>
+                                    <div class="select-wrapper">
+                                        <select id="calc-minute" required>
+                                            <!-- Dynamically filled by JS (00-59) -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Focus Year & Gender (Năm tính & Giới tính in same row) -->
+                            <div class="form-row-two" style="margin-bottom: 20px;">
+                                <div class="form-group">
+                                    <label for="calc-focus-year">Năm tính</label>
+                                    <div class="select-wrapper">
+                                        <select id="calc-focus-year" required>
+                                            <!-- Dynamically filled by JS (1900-2041) -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="justify-content: center;">
+                                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Giới tính</span>
+                                    <div class="radio-options" style="display: flex; gap: 20px; align-items: center; height: 42px;">
+                                        <label class="radio-option">
+                                            <input type="radio" name="calc-gender" value="Nam" checked>
+                                            <span>Nam</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="calc-gender" value="Nữ">
+                                            <span>Nữ</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Submit Button (MỞ LÁ SỐ) -->
+                            <button type="submit" class="submit-calc-btn" id="submit-calc-btn">
+                                MỞ LÁ SỐ
+                            </button>
+                            
+                            <!-- Vietnamese Bazi description note below button -->
+                            <p style="margin-top: 15px; font-size: 0.78rem; line-height: 1.5; color: var(--text-muted); text-align: center; font-style: italic;">
+                                Nếu quý vị không nhớ phút sinh chính xác thì nhập theo: (từ 01p tới 30p lấy 30p – từ 30p tới 59p lấy 50p)
+                            </p>
+                        </form>
+                    </div>
+                    
+                    <!-- Real-time Loading & Dynamic Result Display -->
+                    <div class="calc-result-card card-glass" id="calc-result-area">
+                        <div class="result-placeholder">
+                            <i class="fa-solid fa-calculator placeholder-icon"></i>
+                            <h3>Sẵn sàng tính toán</h3>
+                            <p>Nhập thông tin bên trái và bấm nút "Xem Lá Số Bát Tự" để kết nối hệ thống cào ngầm, tính toán Can Chi ngũ hành và tự động lưu vào database.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- Profile Details Modal -->
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-card card-glass">
+            <button class="close-btn" id="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="modal-content">
+                <!-- Loaded dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
